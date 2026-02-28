@@ -1,0 +1,73 @@
+# docker-compose.yml
+
+version: "3.9"
+
+services:
+  # Service definitions – one per server instance
+  fishing1:
+    build: .
+    command: ["python", "server.py", "50051", "1.JPG"]
+    ports:
+      - "50051:50051"
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+
+  fishing2:
+    build: .
+    command: ["python", "server.py", "50052", "2.JPG"]
+    ports:
+      - "50052:50052"
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+
+  fishing3:
+    build: .
+    command: ["python", "server.py", "50053", "3.JPG"]
+    ports:
+      - "50053:50053"
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+
+  fishing4:
+    build: .
+    command: ["python", "server.py", "50054", "4.JPG"]
+    ports:
+      - "50054:50054"
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+
+  fishing5:
+    build: .
+    command: ["python", "server.py", "50055", "5.JPG"]
+    ports:
+      - "50055:50055"
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+
+  fishing6:
+    build: .
+    command: ["python", "server.py", "50056", "6.JPG"]
+    ports:
+      - "50056:50056"
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+
+# Build context – assumes Dockerfile lives in the same directory as server.py

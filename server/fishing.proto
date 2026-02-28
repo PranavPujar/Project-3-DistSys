@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package fishingapp;
+
+import "google/protobuf/empty.proto";
+
+message User {
+  int32 id          = 1;
+  double x          = 2;
+  double y          = 3;
+  bool is_fishing   = 4;
+}
+
+message LoginRequest {
+  string username = 1;
+  string password = 2;
+}
+message LoginResponse {
+  string token = 1;
+}
+
+message UpdateLocationRequest {
+  string jwt = 1;
+  double x   = 2;
+  double y   = 3;
+}
+message UpdateLocationResponse {
+  bool success = 1;
+}
+
+message StartFishingRequest { string jwt = 1; }
+
+message Fish {
+  int32 fish_id    = 1;
+  string fish_dna  = 2;
+  int32 fish_level = 3;
+}
+
+message EmptyRequest {}
+message CurrentUsersResponse { int32 count = 1; }
+
+message InventoryRequest {}
+message InventoryResponse { repeated Fish fish = 1; }
+
+message ImageRequest {}
+message ImageResponse { bytes image_data = 1; }
+
+service FishingService {
+  rpc ListUsers (google.protobuf.Empty) returns (stream User);
+  rpc Login (LoginRequest) returns (LoginResponse);
+  rpc UpdateLocation (stream UpdateLocationRequest) returns (UpdateLocationResponse);
+  rpc StartFishing (StartFishingRequest) returns (stream Fish);
+  rpc CurrentUsers (EmptyRequest) returns (stream CurrentUsersResponse);
+  rpc Inventory (InventoryRequest) returns (InventoryResponse);
+  rpc GetImage (ImageRequest) returns (ImageResponse);
+}

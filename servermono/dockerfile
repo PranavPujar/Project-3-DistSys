@@ -1,0 +1,16 @@
+# Dockerfile
+
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Copy only what is necessary
+COPY . .
+
+# Install any required Python packages (adjust if you have more)
+RUN pip install --no-cache-dir grpcio protobuf
+
+# Default command (overridden by compose `command`)
+# CMD ["python", "server.py"]
+RUN chmod +x entrypoint.sh
+CMD ["./entrypoint.sh"]

@@ -1,0 +1,12 @@
+version: "3.9"
+
+services:
+  fishing-cluster:
+    build: .
+    ports:
+      - "50051-50056:50051-50056"
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: "1" # Adjusted to account for all 6 servers
