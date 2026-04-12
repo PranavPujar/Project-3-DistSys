@@ -118,7 +118,7 @@ class FishingService(grpc_stub.FishingServiceServicer):
         chance = base_chance + state.current_user_count() * extra_per_user
 
         print(f"[FISH] User {jwt} started fishing. Chance={chance:.2f}")
-        while True:
+        while context.is_active():
             # Simulate a short delay
             time.sleep(random.uniform(1, 3))
             if random.random() < chance:
@@ -133,13 +133,13 @@ class FishingService(grpc_stub.FishingServiceServicer):
                 break
             else:
                 print(f"[FISH] User {jwt} did not catch a fish.")
-                # Nothing to yield – stream will close
+                # We continue loop until a fish is caught or client disconnects
 
     # ---------- CurrentUsers (server‑stream) ----------
     def CurrentUsers(self, request, context):
         previouscount = state.current_user_count()
         yield pb.CurrentUsersResponse(count=previouscount)
-        while True:
+        while context.is_active():
             count = state.current_user_count()
             if previouscount != count:
                 previouscount = count
@@ -153,9 +153,12 @@ class FishingService(grpc_stub.FishingServiceServicer):
 
     def GetImage(self, request, context):
         # Read the image file from the path stored in IMAGE_PATH
-        with open(IMAGE_PATH, "rb") as f:
-            image_bytes = f.read()
-        return pb.ImageResponse(image_data=image_bytes)
+        try:
+            with open(IMAGE_PATH, "rb") as f:
+                image_bytes = f.read()
+            return pb.ImageResponse(image_data=image_bytes)
+        except FileNotFoundError:
+            context.abort(grpc.StatusCode.NOT_FOUND, f"Image file {IMAGE_PATH} not found")
 
 # ----------------------------------------------------------------------
 # Server bootstrap

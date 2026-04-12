@@ -38,7 +38,7 @@ class UpdateLocationStream:
         # The first message must contain the JWT – we send it immediately
         request_iter = request_gen()
         try:
-            self.response = next(self.stub.UpdateLocation(request_iter))
+            self.response = self.stub.UpdateLocation(request_iter)
         except Exception as e:
             print(f"[UPDATE] Stream error: {e}")
 
