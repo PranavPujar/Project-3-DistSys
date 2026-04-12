@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # server.py
 
+import os
 import time
 import random
 import threading
@@ -161,18 +162,26 @@ class FishingService(grpc_stub.FishingServiceServicer):
             context.abort(grpc.StatusCode.NOT_FOUND, f"Image file {IMAGE_PATH} not found")
 
 # ----------------------------------------------------------------------
+# 2PC Implementations (Moved here for combined server)
+# ----------------------------------------------------------------------
+from voting_service import VotingService
+from decision_service import DecisionService
+
+# ----------------------------------------------------------------------
 # Server bootstrap
 # ----------------------------------------------------------------------
 def serve(port=50051, image_path="image.jpg"):          # <- accept an image path
     global IMAGE_PATH
     IMAGE_PATH = image_path  # set the global to the provided argument
 
-    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=20))
     grpc_stub.add_FishingServiceServicer_to_server(FishingService(), server)
-    # Use the supplied port instead of hard‑coding it
+    grpc_stub.add_VotingServiceServicer_to_server(VotingService(), server)
+    grpc_stub.add_DecisionServiceServicer_to_server(DecisionService(), server)
+    
     server.add_insecure_port(f"[::]:{port}")
     server.start()
-    print(f"FishingService gRPC server listening on port {port}…")
+    print(f"Combined gRPC server listening on port {port}…")
     try:
         while True:
             time.sleep(86400)

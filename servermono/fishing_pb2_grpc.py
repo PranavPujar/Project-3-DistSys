@@ -354,3 +354,277 @@ class FishingService(object):
             timeout,
             metadata,
             _registered_method=True)
+
+
+class VotingServiceStub(object):
+    """Missing associated documentation comment in .proto file."""
+
+    def __init__(self, channel):
+        """Constructor.
+
+        Args:
+            channel: A grpc.Channel.
+        """
+        self.Prepare = channel.unary_unary(
+                '/fishingapp.VotingService/Prepare',
+                request_serializer=fishing__pb2.VoteRequest.SerializeToString,
+                response_deserializer=fishing__pb2.VoteResponse.FromString,
+                _registered_method=True)
+        self.CommitTransaction = channel.unary_unary(
+                '/fishingapp.VotingService/CommitTransaction',
+                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
+
+
+class VotingServiceServicer(object):
+    """Missing associated documentation comment in .proto file."""
+
+    def Prepare(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def CommitTransaction(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+
+def add_VotingServiceServicer_to_server(servicer, server):
+    rpc_method_handlers = {
+            'Prepare': grpc.unary_unary_rpc_method_handler(
+                    servicer.Prepare,
+                    request_deserializer=fishing__pb2.VoteRequest.FromString,
+                    response_serializer=fishing__pb2.VoteResponse.SerializeToString,
+            ),
+            'CommitTransaction': grpc.unary_unary_rpc_method_handler(
+                    servicer.CommitTransaction,
+                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+    }
+    generic_handler = grpc.method_handlers_generic_handler(
+            'fishingapp.VotingService', rpc_method_handlers)
+    server.add_generic_rpc_handlers((generic_handler,))
+    server.add_registered_method_handlers('fishingapp.VotingService', rpc_method_handlers)
+
+
+ # This class is part of an EXPERIMENTAL API.
+class VotingService(object):
+    """Missing associated documentation comment in .proto file."""
+
+    @staticmethod
+    def Prepare(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/fishingapp.VotingService/Prepare',
+            fishing__pb2.VoteRequest.SerializeToString,
+            fishing__pb2.VoteResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def CommitTransaction(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/fishingapp.VotingService/CommitTransaction',
+            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+
+class DecisionServiceStub(object):
+    """Missing associated documentation comment in .proto file."""
+
+    def __init__(self, channel):
+        """Constructor.
+
+        Args:
+            channel: A grpc.Channel.
+        """
+        self.GlobalDecision = channel.unary_unary(
+                '/fishingapp.DecisionService/GlobalDecision',
+                request_serializer=fishing__pb2.GlobalDecisionRequest.SerializeToString,
+                response_deserializer=fishing__pb2.GlobalDecisionResponse.FromString,
+                _registered_method=True)
+        self.InternalPrepare = channel.unary_unary(
+                '/fishingapp.DecisionService/InternalPrepare',
+                request_serializer=fishing__pb2.InternalPrepareRequest.SerializeToString,
+                response_deserializer=fishing__pb2.InternalPrepareResponse.FromString,
+                _registered_method=True)
+        self.InternalDecision = channel.unary_unary(
+                '/fishingapp.DecisionService/InternalDecision',
+                request_serializer=fishing__pb2.InternalDecisionRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
+
+
+class DecisionServiceServicer(object):
+    """Missing associated documentation comment in .proto file."""
+
+    def GlobalDecision(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def InternalPrepare(self, request, context):
+        """Internal RPC for internal communication between phases on same node
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def InternalDecision(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+
+def add_DecisionServiceServicer_to_server(servicer, server):
+    rpc_method_handlers = {
+            'GlobalDecision': grpc.unary_unary_rpc_method_handler(
+                    servicer.GlobalDecision,
+                    request_deserializer=fishing__pb2.GlobalDecisionRequest.FromString,
+                    response_serializer=fishing__pb2.GlobalDecisionResponse.SerializeToString,
+            ),
+            'InternalPrepare': grpc.unary_unary_rpc_method_handler(
+                    servicer.InternalPrepare,
+                    request_deserializer=fishing__pb2.InternalPrepareRequest.FromString,
+                    response_serializer=fishing__pb2.InternalPrepareResponse.SerializeToString,
+            ),
+            'InternalDecision': grpc.unary_unary_rpc_method_handler(
+                    servicer.InternalDecision,
+                    request_deserializer=fishing__pb2.InternalDecisionRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+    }
+    generic_handler = grpc.method_handlers_generic_handler(
+            'fishingapp.DecisionService', rpc_method_handlers)
+    server.add_generic_rpc_handlers((generic_handler,))
+    server.add_registered_method_handlers('fishingapp.DecisionService', rpc_method_handlers)
+
+
+ # This class is part of an EXPERIMENTAL API.
+class DecisionService(object):
+    """Missing associated documentation comment in .proto file."""
+
+    @staticmethod
+    def GlobalDecision(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/fishingapp.DecisionService/GlobalDecision',
+            fishing__pb2.GlobalDecisionRequest.SerializeToString,
+            fishing__pb2.GlobalDecisionResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def InternalPrepare(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/fishingapp.DecisionService/InternalPrepare',
+            fishing__pb2.InternalPrepareRequest.SerializeToString,
+            fishing__pb2.InternalPrepareResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def InternalDecision(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/fishingapp.DecisionService/InternalDecision',
+            fishing__pb2.InternalDecisionRequest.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)

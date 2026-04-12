@@ -25,13 +25,17 @@ _sym_db = _symbol_database.Default()
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rfishing.proto\x12\nfishingapp\x1a\x1bgoogle/protobuf/empty.proto\"<\n\x04User\x12\n\n\x02id\x18\x01 \x01(\x05\x12\t\n\x01x\x18\x02 \x01(\x01\x12\t\n\x01y\x18\x03 \x01(\x01\x12\x12\n\nis_fishing\x18\x04 \x01(\x08\"2\n\x0cLoginRequest\x12\x10\n\x08username\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\"\x1e\n\rLoginResponse\x12\r\n\x05token\x18\x01 \x01(\t\":\n\x15UpdateLocationRequest\x12\x0b\n\x03jwt\x18\x01 \x01(\t\x12\t\n\x01x\x18\x02 \x01(\x01\x12\t\n\x01y\x18\x03 \x01(\x01\")\n\x16UpdateLocationResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\"\"\n\x13StartFishingRequest\x12\x0b\n\x03jwt\x18\x01 \x01(\t\"=\n\x04\x46ish\x12\x0f\n\x07\x66ish_id\x18\x01 \x01(\x05\x12\x10\n\x08\x66ish_dna\x18\x02 \x01(\t\x12\x12\n\nfish_level\x18\x03 \x01(\x05\"\x0e\n\x0c\x45mptyRequest\"%\n\x14\x43urrentUsersResponse\x12\r\n\x05\x63ount\x18\x01 \x01(\x05\"\x12\n\x10InventoryRequest\"3\n\x11InventoryResponse\x12\x1e\n\x04\x66ish\x18\x01 \x03(\x0b\x32\x10.fishingapp.Fish\"\x0e\n\x0cImageRequest\"#\n\rImageResponse\x12\x12\n\nimage_data\x18\x01 \x01(\x0c\x32\x80\x04\n\x0e\x46ishingService\x12\x37\n\tListUsers\x12\x16.google.protobuf.Empty\x1a\x10.fishingapp.User0\x01\x12<\n\x05Login\x12\x18.fishingapp.LoginRequest\x1a\x19.fishingapp.LoginResponse\x12Y\n\x0eUpdateLocation\x12!.fishingapp.UpdateLocationRequest\x1a\".fishingapp.UpdateLocationResponse(\x01\x12\x43\n\x0cStartFishing\x12\x1f.fishingapp.StartFishingRequest\x1a\x10.fishingapp.Fish0\x01\x12L\n\x0c\x43urrentUsers\x12\x18.fishingapp.EmptyRequest\x1a .fishingapp.CurrentUsersResponse0\x01\x12H\n\tInventory\x12\x1c.fishingapp.InventoryRequest\x1a\x1d.fishingapp.InventoryResponse\x12?\n\x08GetImage\x12\x18.fishingapp.ImageRequest\x1a\x19.fishingapp.ImageResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rfishing.proto\x12\nfishingapp\x1a\x1bgoogle/protobuf/empty.proto\"<\n\x04User\x12\n\n\x02id\x18\x01 \x01(\x05\x12\t\n\x01x\x18\x02 \x01(\x01\x12\t\n\x01y\x18\x03 \x01(\x01\x12\x12\n\nis_fishing\x18\x04 \x01(\x08\"2\n\x0cLoginRequest\x12\x10\n\x08username\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\"\x1e\n\rLoginResponse\x12\r\n\x05token\x18\x01 \x01(\t\":\n\x15UpdateLocationRequest\x12\x0b\n\x03jwt\x18\x01 \x01(\t\x12\t\n\x01x\x18\x02 \x01(\x01\x12\t\n\x01y\x18\x03 \x01(\x01\")\n\x16UpdateLocationResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\"\"\n\x13StartFishingRequest\x12\x0b\n\x03jwt\x18\x01 \x01(\t\"=\n\x04\x46ish\x12\x0f\n\x07\x66ish_id\x18\x01 \x01(\x05\x12\x10\n\x08\x66ish_dna\x18\x02 \x01(\t\x12\x12\n\nfish_level\x18\x03 \x01(\x05\"\x0e\n\x0c\x45mptyRequest\"%\n\x14\x43urrentUsersResponse\x12\r\n\x05\x63ount\x18\x01 \x01(\x05\"\x12\n\x10InventoryRequest\"3\n\x11InventoryResponse\x12\x1e\n\x04\x66ish\x18\x01 \x03(\x0b\x32\x10.fishingapp.Fish\"\x0e\n\x0cImageRequest\"#\n\rImageResponse\x12\x12\n\nimage_data\x18\x01 \x01(\x0c\"6\n\x0bVoteRequest\x12\x16\n\x0etransaction_id\x18\x01 \x01(\t\x12\x0f\n\x07node_id\x18\x02 \x01(\t\"?\n\x0cVoteResponse\x12\x1e\n\x04vote\x18\x01 \x01(\x0e\x32\x10.fishingapp.Vote\x12\x0f\n\x07node_id\x18\x02 \x01(\t\"h\n\x15GlobalDecisionRequest\x12\x16\n\x0etransaction_id\x18\x01 \x01(\t\x12&\n\x08\x64\x65\x63ision\x18\x02 \x01(\x0e\x32\x14.fishingapp.Decision\x12\x0f\n\x07node_id\x18\x03 \x01(\t\"6\n\x16GlobalDecisionResponse\x12\x0b\n\x03\x61\x63k\x18\x01 \x01(\x08\x12\x0f\n\x07node_id\x18\x02 \x01(\t\"A\n\x16InternalPrepareRequest\x12\x16\n\x0etransaction_id\x18\x01 \x01(\t\x12\x0f\n\x07node_id\x18\x02 \x01(\t\"9\n\x17InternalPrepareResponse\x12\x1e\n\x04vote\x18\x01 \x01(\x0e\x32\x10.fishingapp.Vote\"j\n\x17InternalDecisionRequest\x12\x16\n\x0etransaction_id\x18\x01 \x01(\t\x12&\n\x08\x64\x65\x63ision\x18\x02 \x01(\x0e\x32\x14.fishingapp.Decision\x12\x0f\n\x07node_id\x18\x03 \x01(\t*\'\n\x04Vote\x12\x0f\n\x0bVOTE_COMMIT\x10\x00\x12\x0e\n\nVOTE_ABORT\x10\x01*3\n\x08\x44\x65\x63ision\x12\x13\n\x0f\x44\x45\x43ISION_COMMIT\x10\x00\x12\x12\n\x0e\x44\x45\x43ISION_ABORT\x10\x01\x32\x80\x04\n\x0e\x46ishingService\x12\x37\n\tListUsers\x12\x16.google.protobuf.Empty\x1a\x10.fishingapp.User0\x01\x12<\n\x05Login\x12\x18.fishingapp.LoginRequest\x1a\x19.fishingapp.LoginResponse\x12Y\n\x0eUpdateLocation\x12!.fishingapp.UpdateLocationRequest\x1a\".fishingapp.UpdateLocationResponse(\x01\x12\x43\n\x0cStartFishing\x12\x1f.fishingapp.StartFishingRequest\x1a\x10.fishingapp.Fish0\x01\x12L\n\x0c\x43urrentUsers\x12\x18.fishingapp.EmptyRequest\x1a .fishingapp.CurrentUsersResponse0\x01\x12H\n\tInventory\x12\x1c.fishingapp.InventoryRequest\x1a\x1d.fishingapp.InventoryResponse\x12?\n\x08GetImage\x12\x18.fishingapp.ImageRequest\x1a\x19.fishingapp.ImageResponse2\x92\x01\n\rVotingService\x12<\n\x07Prepare\x12\x17.fishingapp.VoteRequest\x1a\x18.fishingapp.VoteResponse\x12\x43\n\x11\x43ommitTransaction\x12\x16.google.protobuf.Empty\x1a\x16.google.protobuf.Empty2\x97\x02\n\x0f\x44\x65\x63isionService\x12W\n\x0eGlobalDecision\x12!.fishingapp.GlobalDecisionRequest\x1a\".fishingapp.GlobalDecisionResponse\x12Z\n\x0fInternalPrepare\x12\".fishingapp.InternalPrepareRequest\x1a#.fishingapp.InternalPrepareResponse\x12O\n\x10InternalDecision\x12#.fishingapp.InternalDecisionRequest\x1a\x16.google.protobuf.Emptyb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'fishing_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
+  _globals['_VOTE']._serialized_start=1104
+  _globals['_VOTE']._serialized_end=1143
+  _globals['_DECISION']._serialized_start=1145
+  _globals['_DECISION']._serialized_end=1196
   _globals['_USER']._serialized_start=58
   _globals['_USER']._serialized_end=118
   _globals['_LOGINREQUEST']._serialized_start=120
@@ -58,6 +62,24 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_IMAGEREQUEST']._serialized_end=548
   _globals['_IMAGERESPONSE']._serialized_start=550
   _globals['_IMAGERESPONSE']._serialized_end=585
-  _globals['_FISHINGSERVICE']._serialized_start=588
-  _globals['_FISHINGSERVICE']._serialized_end=1100
+  _globals['_VOTEREQUEST']._serialized_start=587
+  _globals['_VOTEREQUEST']._serialized_end=641
+  _globals['_VOTERESPONSE']._serialized_start=643
+  _globals['_VOTERESPONSE']._serialized_end=706
+  _globals['_GLOBALDECISIONREQUEST']._serialized_start=708
+  _globals['_GLOBALDECISIONREQUEST']._serialized_end=812
+  _globals['_GLOBALDECISIONRESPONSE']._serialized_start=814
+  _globals['_GLOBALDECISIONRESPONSE']._serialized_end=868
+  _globals['_INTERNALPREPAREREQUEST']._serialized_start=870
+  _globals['_INTERNALPREPAREREQUEST']._serialized_end=935
+  _globals['_INTERNALPREPARERESPONSE']._serialized_start=937
+  _globals['_INTERNALPREPARERESPONSE']._serialized_end=994
+  _globals['_INTERNALDECISIONREQUEST']._serialized_start=996
+  _globals['_INTERNALDECISIONREQUEST']._serialized_end=1102
+  _globals['_FISHINGSERVICE']._serialized_start=1199
+  _globals['_FISHINGSERVICE']._serialized_end=1711
+  _globals['_VOTINGSERVICE']._serialized_start=1714
+  _globals['_VOTINGSERVICE']._serialized_end=1860
+  _globals['_DECISIONSERVICE']._serialized_start=1863
+  _globals['_DECISIONSERVICE']._serialized_end=2142
 # @@protoc_insertion_point(module_scope)

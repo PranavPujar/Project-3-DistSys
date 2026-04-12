@@ -45,6 +45,54 @@ message InventoryResponse { repeated Fish fish = 1; }
 message ImageRequest {}
 message ImageResponse { bytes image_data = 1; }
 
+// --- 2PC Messages ---
+
+enum Vote {
+  VOTE_COMMIT = 0;
+  VOTE_ABORT = 1;
+}
+
+enum Decision {
+  DECISION_COMMIT = 0;
+  DECISION_ABORT = 1;
+}
+
+message VoteRequest {
+  string transaction_id = 1;
+  string node_id = 2; // sender node id
+}
+
+message VoteResponse {
+  Vote vote = 1;
+  string node_id = 2; // responder node id
+}
+
+message GlobalDecisionRequest {
+  string transaction_id = 1;
+  Decision decision = 2;
+  string node_id = 3; // sender node id
+}
+
+message GlobalDecisionResponse {
+  bool ack = 1;
+  string node_id = 2; // responder node id
+}
+
+message InternalPrepareRequest {
+  string transaction_id = 1;
+  string node_id = 2;
+}
+
+message InternalPrepareResponse {
+  Vote vote = 1;
+}
+
+message InternalDecisionRequest {
+  string transaction_id = 1;
+  Decision decision = 2;
+  string node_id = 3;
+}
+
 service FishingService {
   rpc ListUsers (google.protobuf.Empty) returns (stream User);
   rpc Login (LoginRequest) returns (LoginResponse);
@@ -53,4 +101,16 @@ service FishingService {
   rpc CurrentUsers (EmptyRequest) returns (stream CurrentUsersResponse);
   rpc Inventory (InventoryRequest) returns (InventoryResponse);
   rpc GetImage (ImageRequest) returns (ImageResponse);
+}
+
+service VotingService {
+  rpc Prepare (VoteRequest) returns (VoteResponse);
+  rpc CommitTransaction (google.protobuf.Empty) returns (google.protobuf.Empty);
+}
+
+service DecisionService {
+  rpc GlobalDecision (GlobalDecisionRequest) returns (GlobalDecisionResponse);
+  // Internal RPC for internal communication between phases on same node
+  rpc InternalPrepare (InternalPrepareRequest) returns (InternalPrepareResponse);
+  rpc InternalDecision (InternalDecisionRequest) returns (google.protobuf.Empty);
 }

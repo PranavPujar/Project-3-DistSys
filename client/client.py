@@ -60,11 +60,19 @@ class FishingClient:
     def __init__(self, address="localhost:50051"):
         self.channel = grpc.insecure_channel(address)
         self.stub = grpc_stub.FishingServiceStub(self.channel)
+        self.voting_stub = grpc_stub.VotingServiceStub(self.channel)
         self.jwt = None
         self.update_stream = None
         self.current_users_thread = None
 
     # ---------- Commands ----------
+    def cmd_commit_transaction(self, args):
+        print("Node Client sends RPC CommitTransaction to Node 1")
+        try:
+            self.voting_stub.CommitTransaction(pb.google_dot_protobuf_dot_empty__pb2.Empty())
+            print("[CLIENT] Transaction commitment initiated on Coordinator.")
+        except grpc.RpcError as e:
+            print(f"[CLIENT] CommitTransaction error: {e}")
     def cmd_login(self, args):
         if len(args) != 2:
             print("Usage: login <username> <password>")
@@ -142,6 +150,7 @@ class FishingClient:
             "current_users",
             "inventory",
             "get_image",
+            "commit_transaction",
             "help",
             "quit"
         ]
@@ -178,6 +187,8 @@ class FishingClient:
                 self.cmd_inventory(args)
             elif cmd == "get_image":
                 self.cmd_get_image(args)
+            elif cmd == "commit_transaction":
+                self.cmd_commit_transaction(args)
             elif cmd == "help":
                 self.cmd_help(args)
             else:
