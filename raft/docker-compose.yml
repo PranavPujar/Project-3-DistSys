@@ -1,0 +1,47 @@
+version: "3.9"
+
+services:
+  raft1:
+    build: .
+    environment:
+      - NODE_ID=1
+      - NODE_IPS=raft1,raft2,raft3,raft4,raft5
+    ports:
+      - "50051:50051"
+    restart: unless-stopped
+
+  raft2:
+    build: .
+    environment:
+      - NODE_ID=2
+      - NODE_IPS=raft1,raft2,raft3,raft4,raft5
+    ports:
+      - "50052:50051"
+    restart: unless-stopped
+
+  raft3:
+    build: .
+    environment:
+      - NODE_ID=3
+      - NODE_IPS=raft1,raft2,raft3,raft4,raft5
+    ports:
+      - "50053:50051"
+    restart: unless-stopped
+
+  raft4:
+    build: .
+    environment:
+      - NODE_ID=4
+      - NODE_IPS=raft1,raft2,raft3,raft4,raft5
+    ports:
+      - "50054:50051"
+    restart: unless-stopped
+
+  raft5:
+    build: .
+    environment:
+      - NODE_ID=5
+      - NODE_IPS=raft1,raft2,raft3,raft4,raft5
+    ports:
+      - "50055:50051"
+    restart: unless-stopped
